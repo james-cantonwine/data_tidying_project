@@ -48,7 +48,8 @@ colnames(df2) <- df2[1,]
 
 ```{r save-data, warning=FALSE} 
 ## use saveRDS() to save each object as a .rds file 
-
+saveRDS(df1, "df_departments.rds")
+saveRDS(df2, "df_retail.rds")
 ```
 
 ### Wrangle Data
@@ -78,10 +79,10 @@ df_retail <- df2 %>%
 ## work with df1
 df_department <- df1 %>% 
   ## split Period column into one column called "month" and one called "year"
-  function_name() %>%
+  separate(Period, into = c('month', 'year'), extra = 'drop', remove = FALSE) %>%
   ## add a column `value` which contains the 
   ## information from the `Value (in millions)` 
-  function_name() %>%
+  mutate(value = `Value (in millions)`) %>%
   ## group the data frame by the `year` column
   function_name() %>%
   ## Summarize the data by creating a new column
